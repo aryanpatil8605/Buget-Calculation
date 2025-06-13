@@ -2,71 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bed Customization Estimator</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      padding: 20px;
-      max-width: 800px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f9fbfd, #e3f2fd);
+      padding: 30px;
+      max-width: 900px;
       margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
-    h2 {
-      color: #333;
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 5px;
+    h1, h2 {
+      color: #2c3e50;
     }
     label {
       display: block;
-      margin-top: 10px;
-      font-weight: bold;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #34495e;
     }
-    select, input[type="file"], textarea {
+    select, input[type="text"], input[type="file"], textarea {
       width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border-radius: 4px;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 8px;
       border: 1px solid #ccc;
+      font-size: 16px;
+      background: #f7f9fb;
     }
     button {
-      background: #28a745;
+      background: #007BFF;
       color: white;
-      padding: 12px 20px;
-      margin-top: 20px;
+      padding: 14px 25px;
+      margin-top: 25px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
+      font-size: 16px;
       cursor: pointer;
+      transition: background 0.3s ease;
     }
     button:hover {
-      background: #218838;
+      background: #0056b3;
     }
     #total {
       margin-top: 20px;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
-      color: #000;
+      color: #2d3436;
+      background: #ecf0f1;
+      padding: 15px;
+      border-radius: 10px;
     }
     a#whatsappLink {
       display: inline-block;
-      margin-top: 15px;
+      margin-top: 20px;
       background: #25D366;
       color: white;
-      padding: 10px 15px;
+      padding: 12px 20px;
       text-decoration: none;
-      border-radius: 5px;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+    a#whatsappLink:hover {
+      background: #20c05a;
     }
   </style>
 </head>
 <body>
   <h1>🛏️ Bed Customization Form</h1>
 
-  <h2>📝 Client Details</h2>
   <label>Name:</label><input type="text" id="name">
   <label>Phone:</label><input type="text" id="phone">
 
-  <h2>🛏️ Bed Type & Size</h2>
-  <label>Choose size:</label>
+  <h2>🛏️ Bed Size</h2>
   <select id="bedSize">
     <option value="4000">Single – ₹4,000</option>
     <option value="6000">Double – ₹6,000</option>
@@ -76,8 +87,7 @@
     <option value="12000">Hydraulic Storage – ₹12,000</option>
   </select>
 
-  <h2>🪵 Frame Material</h2>
-  <label>Choose material:</label>
+  <h2>🖥️ Material</h2>
   <select id="material">
     <option value="600">Pine – ₹600</option>
     <option value="1200">Sheesham – ₹1,200</option>
@@ -88,15 +98,14 @@
     <option value="4500">Upholstered – ₹4,500</option>
   </select>
 
-  <h2>🧵 Upholstery & Headboard</h2>
-  <label>Do you want headboard?</label>
+  <h2>💎 Headboard</h2>
+  <label>Include Headboard?</label>
   <select id="headboardToggle" onchange="toggleHeadboardOptions()">
     <option value="0">No</option>
     <option value="1">Yes</option>
   </select>
-
   <div id="headboardOptions" style="display:none">
-    <label>Choose type:</label>
+    <label>Type:</label>
     <select id="headboardType">
       <option value="2000">Wooden – ₹2,000</option>
       <option value="3000">Padded Fabric – ₹3,000</option>
@@ -105,17 +114,15 @@
     </select>
   </div>
 
-  <h2>🧺 Storage Options</h2>
-  <label>Choose storage:</label>
+  <h2>🚼 Storage</h2>
   <select id="storage">
     <option value="0">No</option>
-    <option value="2500">Box Storage – ₹2,500</option>
-    <option value="3000">Drawer Storage – ₹3,000</option>
-    <option value="5500">Hydraulic Storage – ₹5,500</option>
+    <option value="2500">Box – ₹2,500</option>
+    <option value="3000">Drawer – ₹3,000</option>
+    <option value="5500">Hydraulic – ₹5,500</option>
   </select>
 
-  <h2>🛏️ Mattress</h2>
-  <label>Choose mattress:</label>
+  <h2>🛌 Mattress</h2>
   <select id="mattress">
     <option value="0">No</option>
     <option value="3000">Foam – ₹3,000</option>
@@ -124,24 +131,23 @@
     <option value="8000">Memory Foam – ₹8,000</option>
   </select>
 
-  <h2>🎨 Finish/Polish</h2>
-  <label>Choose polish:</label>
+  <h2>🎨 Finish</h2>
   <select id="polish">
     <option value="500">Natural – ₹500</option>
-    <option value="800">Walnut / Dark – ₹800</option>
+    <option value="800">Walnut – ₹800</option>
     <option value="800">Matte Black – ₹800</option>
     <option value="1200">White Duco – ₹1,200</option>
-    <option value="2000">PU Polish (Glossy) – ₹2,000</option>
+    <option value="2000">PU Glossy – ₹2,000</option>
   </select>
 
-  <h2>📷 Reference & Notes</h2>
-  <label>Upload image (optional):</label><input type="file" />
-  <label>Special Notes:</label><textarea rows="3" id="notes"></textarea>
+  <h2>📷 Reference</h2>
+  <input type="file" />
+  <label>Notes:</label>
+  <textarea id="notes" rows="3"></textarea>
 
-  <button onclick="calculate()">💰 Calculate Total</button>
-
+  <button onclick="calculate()">💰 Calculate</button>
   <p id="total">Total: ₹0</p>
-  <a id="whatsappLink" href="#" target="_blank">📲 Send to WhatsApp</a>
+  <a id="whatsappLink" href="#" target="_blank">📞 Send on WhatsApp</a>
 
   <script>
     function toggleHeadboardOptions() {
@@ -152,25 +158,26 @@
     function calculate() {
       const size = parseInt(document.getElementById("bedSize").value);
       const material = parseInt(document.getElementById("material").value);
-      const headboardToggle = document.getElementById("headboardToggle").value;
-      const headboard = headboardToggle === "1" ? parseInt(document.getElementById("headboardType").value) : 0;
+      const headboard = document.getElementById("headboardToggle").value === "1"
+        ? parseInt(document.getElementById("headboardType").value)
+        : 0;
       const storage = parseInt(document.getElementById("storage").value);
       const mattress = parseInt(document.getElementById("mattress").value);
       const polish = parseInt(document.getElementById("polish").value);
 
-      const baseTotal = size + material + headboard + storage + mattress + polish;
-      const labour = baseTotal * 0.29;
-      const finalTotal = baseTotal + labour;
+      const base = size + material + headboard + storage + mattress + polish;
+      const labour = base * 0.29;
+      const total = base + labour;
 
-      document.getElementById("total").innerText = "Total with 29% labour: ₹" + finalTotal.toFixed(2);
+      document.getElementById("total").innerText = `Total with 29% labour: ₹${total.toFixed(2)}`;
 
       const name = document.getElementById("name").value || "Client";
       const phone = document.getElementById("phone").value || "N/A";
       const notes = document.getElementById("notes").value;
 
-      const message = `Hi, I am ${name}.\nPhone: ${phone}\n\nI want a custom bed with the following:\n- Bed Size: ₹${size}\n- Material: ₹${material}\n- Headboard: ₹${headboard}\n- Storage: ₹${storage}\n- Mattress: ₹${mattress}\n- Polish: ₹${polish}\n\nSubtotal: ₹${baseTotal}\nLabour (29%): ₹${labour.toFixed(2)}\nTotal: ₹${finalTotal.toFixed(2)}\n\nNotes: ${notes}`;
-      const whatsappLink = `https://wa.me/919665037501?text=${encodeURIComponent(message)}`;
-      document.getElementById("whatsappLink").href = whatsappLink;
+      const msg = `Hi, I am ${name}.\nPhone: ${phone}\n\nBed Customization:\nSize: ₹${size}\nMaterial: ₹${material}\nHeadboard: ₹${headboard}\nStorage: ₹${storage}\nMattress: ₹${mattress}\nPolish: ₹${polish}\n\nSubtotal: ₹${base}\nLabour: ₹${labour.toFixed(2)}\nTotal: ₹${total.toFixed(2)}\n\nNotes: ${notes}`;
+      const waURL = `https://wa.me/919665037501?text=${encodeURIComponent(msg)}`;
+      document.getElementById("whatsappLink").href = waURL;
     }
   </script>
 </body>

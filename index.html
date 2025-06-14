@@ -2,183 +2,147 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bed Customization Estimator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Get Estimate | VA Interior</title>
   <style>
+    :root {
+      --main-bg: #f2f3f5;
+      --form-bg: #ffffff;
+      --primary: #e94560;
+      --text: #333;
+      --radius: 12px;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #f9fbfd, #e3f2fd);
-      padding: 30px;
-      max-width: 900px;
+      margin: 0;
+      padding: 40px 20px;
+      background: var(--main-bg);
+      color: var(--text);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #111;
+    }
+
+    form {
+      background: var(--form-bg);
+      max-width: 500px;
       margin: auto;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
-    h1, h2 {
-      color: #2c3e50;
-    }
+
     label {
-      display: block;
-      margin-top: 15px;
       font-weight: 600;
-      color: #34495e;
+      margin-bottom: 6px;
+      display: block;
     }
-    select, input[type="text"], input[type="file"], textarea {
+
+    input, select {
       width: 100%;
-      padding: 10px;
-      margin-top: 6px;
-      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: var(--radius);
       border: 1px solid #ccc;
-      font-size: 16px;
-      background: #f7f9fb;
+      background: #fdfdfd;
+      font-size: 1rem;
     }
+
     button {
-      background: #007BFF;
+      width: 100%;
+      padding: 14px;
+      background: var(--primary);
       color: white;
-      padding: 14px 25px;
-      margin-top: 25px;
       border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-    #total {
-      margin-top: 20px;
-      font-size: 20px;
+      font-size: 1rem;
       font-weight: bold;
-      color: #2d3436;
-      background: #ecf0f1;
-      padding: 15px;
-      border-radius: 10px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
-    a#whatsappLink {
-      display: inline-block;
-      margin-top: 20px;
-      background: #25D366;
-      color: white;
-      padding: 12px 20px;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 16px;
-      transition: background 0.3s ease;
+
+    button:hover {
+      background: #d83852;
+      transform: translateY(-2px);
     }
-    a#whatsappLink:hover {
-      background: #20c05a;
+
+    @media (max-width: 600px) {
+      form {
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>🛏️ Bed Customization Form</h1>
 
-  <label>Name:</label><input type="text" id="name">
-  <label>Phone:</label><input type="text" id="phone">
+  <h2>Let’s Plan Your Interior Project</h2>
 
-  <h2>🛏️ Bed Size</h2>
-  <select id="bedSize">
-    <option value="4000">Single – ₹4,000</option>
-    <option value="6000">Double – ₹6,000</option>
-    <option value="7500">Queen – ₹7,500</option>
-    <option value="9000">King – ₹9,000</option>
-    <option value="10000">Bunk – ₹10,000</option>
-    <option value="12000">Hydraulic Storage – ₹12,000</option>
-  </select>
+  <form id="estimateForm">
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" required placeholder="Enter your name" />
 
-  <h2>🖥️ Material</h2>
-  <select id="material">
-    <option value="600">Pine – ₹600</option>
-    <option value="1200">Sheesham – ₹1,200</option>
-    <option value="1800">Teak – ₹1,800</option>
-    <option value="50">MDF – ₹50</option>
-    <option value="400">Plywood + Laminate – ₹400</option>
-    <option value="6000">Metal Frame – ₹6,000</option>
-    <option value="4500">Upholstered – ₹4,500</option>
-  </select>
+    <label for="location">Location/City:</label>
+    <input type="text" id="location" required placeholder="Your city or area" />
 
-  <h2>💎 Headboard</h2>
-  <label>Include Headboard?</label>
-  <select id="headboardToggle" onchange="toggleHeadboardOptions()">
-    <option value="0">No</option>
-    <option value="1">Yes</option>
-  </select>
-  <div id="headboardOptions" style="display:none">
-    <label>Type:</label>
-    <select id="headboardType">
-      <option value="2000">Wooden – ₹2,000</option>
-      <option value="3000">Padded Fabric – ₹3,000</option>
-      <option value="5000">Designer Upholstered – ₹5,000</option>
-      <option value="6000">Storage Headboard – ₹6,000</option>
+    <label for="property">Select Property Type:</label>
+    <select id="property" required>
+      <option value="">--Choose--</option>
+      <option value="1BHK">1BHK</option>
+      <option value="2BHK">2BHK</option>
+      <option value="2BHK">3BHK</option>
+      <option value="2BHK">4BHK</option>
+      <option value="Commercial">Commercial</option>
+      <option value="Other">Other</option>
     </select>
-  </div>
 
-  <h2>🚼 Storage</h2>
-  <select id="storage">
-    <option value="0">No</option>
-    <option value="2500">Box – ₹2,500</option>
-    <option value="3000">Drawer – ₹3,000</option>
-    <option value="5500">Hydraulic – ₹5,500</option>
-  </select>
+    <label for="budget">Select Your Budget:</label>
+    <select id="budget" required>
+      <option value="">--Choose--</option>
+      <option value="Below ₹5L">Below ₹5L</option>
+      <option value="₹5L–₹10L">₹5L–₹10L</option>
+      <option value="₹10L–₹15L">₹10L–₹15L</option>
+      <option value="Above ₹15L">Above ₹15L</option>
+    </select>
 
-  <h2>🛌 Mattress</h2>
-  <select id="mattress">
-    <option value="0">No</option>
-    <option value="3000">Foam – ₹3,000</option>
-    <option value="4000">Spring – ₹4,000</option>
-    <option value="6000">Orthopedic – ₹6,000</option>
-    <option value="8000">Memory Foam – ₹8,000</option>
-  </select>
+    <label for="contactDate">Preferred Contact Date:</label>
+    <input type="date" id="contactDate" required />
 
-  <h2>🎨 Finish</h2>
-  <select id="polish">
-    <option value="500">Natural – ₹500</option>
-    <option value="800">Walnut – ₹800</option>
-    <option value="800">Matte Black – ₹800</option>
-    <option value="1200">White Duco – ₹1,200</option>
-    <option value="2000">PU Glossy – ₹2,000</option>
-  </select>
+    <label for="contactTime">Preferred Contact Time:</label>
+    <select id="contactTime" required>
+      <option value="">--Choose--</option>
+      <option value="Morning">Morning</option>
+      <option value="Afternoon">Afternoon</option>
+      <option value="Evening">Evening</option>
+    </select>
 
-  <h2>📷 Reference</h2>
-  <input type="file" />
-  <label>Notes:</label>
-  <textarea id="notes" rows="3"></textarea>
-
-  <button onclick="calculate()">💰 Calculate</button>
-  <p id="total">Total: ₹0</p>
-  <a id="whatsappLink" href="#" target="_blank">📞 Send on WhatsApp</a>
+    <button type="button" onclick="sendWhatsApp()">Send to WhatsApp</button>
+  </form>
 
   <script>
-    function toggleHeadboardOptions() {
-      const show = document.getElementById("headboardToggle").value === "1";
-      document.getElementById("headboardOptions").style.display = show ? "block" : "none";
-    }
+    function sendWhatsApp() {
+      const name = document.getElementById("name").value.trim();
+      const location = document.getElementById("location").value.trim();
+      const property = document.getElementById("property").value;
+      const budget = document.getElementById("budget").value;
+      const contactDate = document.getElementById("contactDate").value;
+      const contactTime = document.getElementById("contactTime").value;
 
-    function calculate() {
-      const size = parseInt(document.getElementById("bedSize").value);
-      const material = parseInt(document.getElementById("material").value);
-      const headboard = document.getElementById("headboardToggle").value === "1"
-        ? parseInt(document.getElementById("headboardType").value)
-        : 0;
-      const storage = parseInt(document.getElementById("storage").value);
-      const mattress = parseInt(document.getElementById("mattress").value);
-      const polish = parseInt(document.getElementById("polish").value);
+      if (!name || !location || !property || !budget || !contactDate || !contactTime) {
+        alert("Please fill out all fields.");
+        return;
+      }
 
-      const base = size + material + headboard + storage + mattress + polish;
-      const labour = base * 0.29;
-      const total = base + labour;
+      const message = `Hi VA Interior,%0A%0AI'm *${name}* from *${location}*.%0AI'm looking for interior work for a *${property}* property.%0AMy budget is *${budget}*.%0APlease contact me on *${contactDate}* in the *${contactTime}*.%0A%0AThank you!`;
 
-      document.getElementById("total").innerText = `Total with 29% labour: ₹${total.toFixed(2)}`;
-
-      const name = document.getElementById("name").value || "Client";
-      const phone = document.getElementById("phone").value || "N/A";
-      const notes = document.getElementById("notes").value;
-
-      const msg = `Hi, I am ${name}.\nPhone: ${phone}\n\nBed Customization:\nSize: ₹${size}\nMaterial: ₹${material}\nHeadboard: ₹${headboard}\nStorage: ₹${storage}\nMattress: ₹${mattress}\nPolish: ₹${polish}\n\nSubtotal: ₹${base}\nLabour: ₹${labour.toFixed(2)}\nTotal: ₹${total.toFixed(2)}\n\nNotes: ${notes}`;
-      const waURL = `https://wa.me/919665037501?text=${encodeURIComponent(msg)}`;
-      document.getElementById("whatsappLink").href = waURL;
+      const phoneNumber = "919307929878"; // Your WhatsApp number
+      window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
     }
   </script>
+
 </body>
 </html>
